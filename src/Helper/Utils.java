@@ -94,4 +94,20 @@ public class Utils {
         System.out.print("Enter any key to go to main menu");
         getString();
     }
+
+    public static void listBankAccountsView(Bank bank) {
+        System.out.printf("Accounts of the bank %s\n",bank.getName());
+        printArrayAccounts(bank.getAccounts());
+        System.out.print("Enter any key to go to main menu");
+        getString();
+    }
+
+    private static void printArrayAccounts(ArrayList<SavingAccount> savingAccounts) {
+        int count = 0;
+        for(SavingAccount savingAccount : savingAccounts){
+            System.out.printf("%d - Account #: %s\tBalance: %f\tOwner: %s\n",count,savingAccount.getAccountNumber(),
+                    savingAccount.getBalance(), savingAccount.getOwner().getUsername());
+            count++;
+        }
+    }
 }

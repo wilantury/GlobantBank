@@ -15,7 +15,7 @@ public class Runner {
         Bank bank;
         bank = Utils.createBankView();
         System.out.println("Bank name: " + bank.getName());
-        while(!option.equals("e")){
+        while(!option.equals("6")){
             option = Utils.getOptionsAdminMenu(bank.getName());
             switch (option){
                 case "1":
@@ -24,6 +24,7 @@ public class Runner {
                     break;
                 case "2":
                     SavingAccount savingAccount = Utils.createAccountView();
+                    bank.addSavingAccount(savingAccount);
                     users = bank.getUsers();
                     user = Utils.addOwnerToAccountView(users);
                     savingAccount.setOwner(user);
@@ -31,6 +32,8 @@ public class Runner {
                 case "3":
                     Utils.listUsersView(bank);
                     break;
+                case "4":
+                    Utils.listBankAccountsView(bank);
             }
         }
 
