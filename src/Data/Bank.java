@@ -22,4 +22,8 @@ public class Bank {
     public ArrayList<User> getUsers() {
         return this.users;
     }
+
+    public String getName(){
+        return this.name;
+    }
 }

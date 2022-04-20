@@ -5,6 +5,10 @@ public class User {
     private String username;
     private String password;
 
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
 
     //Getters
     public SavingAccount getSavingAccount() {
@@ -30,6 +34,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }
