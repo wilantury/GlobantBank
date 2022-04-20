@@ -9,8 +9,8 @@ public class SavingAccount extends Account{
         super(name,balance);
     }
 
-    public SavingAccount(String name, float balance, float withdrawTaxFix, float withdrawTaxPercentage, float transferTaxFix){
-        super(name,balance);
+    public SavingAccount(String accountNumber, float balance, float withdrawTaxFix, float withdrawTaxPercentage, float transferTaxFix){
+        super(accountNumber,balance);
         this.transferTaxFix = transferTaxFix;
         this.withdrawTaxFix = withdrawTaxFix;
         this.withdrawTaxPercentage = withdrawTaxPercentage;
