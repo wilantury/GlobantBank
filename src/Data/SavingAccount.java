@@ -17,11 +17,16 @@ public class SavingAccount extends Account{
         this.withdrawTaxPercentage = withdrawTaxPercentage;
     }
 
-    private float calcTaxWithdraw(float amount){
-        return 0;
+    public boolean checkFundsTransfer(float amountToRetrieve){
+        float totalTax = amountToRetrieve + this.transferTaxFix;
+        return this.getBalance() >= totalTax ? true : false;
     }
 
-    private float calcTaxTransfer(float amount){
+    public void withdrawBalance(float amount){
+        this.setBalance(this.getBalance() - amount -this.transferTaxFix);
+    }
+
+    private float calcTaxWithdraw(float amount){
         return 0;
     }
 

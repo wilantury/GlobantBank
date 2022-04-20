@@ -25,6 +25,10 @@ public class Account {
         return balance;
     }
 
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
+
     public Instant getOpenDate() {
         return openDate;
     }
@@ -34,7 +38,7 @@ public class Account {
     }
 
     public void addMoney(float amount){
-
+        this.balance += amount;
     }
 
     public void transferMoney(float amount, SavingAccount originAccount, SavingAccount targetAccount){

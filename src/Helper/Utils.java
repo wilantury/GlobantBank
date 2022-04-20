@@ -9,6 +9,25 @@ import java.util.Scanner;
 
 public class Utils {
 
+    public static Bank createDummyData(Bank bank){
+        User user1 = new User("wilantury", "12345678998");
+        User user2 = new User("Carlos", "12345678998");
+        User user3 = new User("Rojas", "12345678998");
+        SavingAccount savingAccount1 = new SavingAccount("298837827387327", 0);
+        SavingAccount savingAccount2 = new SavingAccount("298837827387328", 400);
+        SavingAccount savingAccount3 = new SavingAccount("298837827387329", 300);
+        savingAccount1.setOwner(user1);
+        savingAccount2.setOwner(user2);
+        savingAccount3.setOwner(user3);
+        bank.addUser(user1);
+        bank.addUser(user2);
+        bank.addUser(user3);
+        bank.addSavingAccount(savingAccount1);
+        bank.addSavingAccount(savingAccount2);
+        bank.addSavingAccount(savingAccount3);
+        return bank;
+    }
+
     public static String getString(){
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
@@ -108,6 +127,37 @@ public class Utils {
             System.out.printf("%d - Account #: %s\tBalance: %f\tOwner: %s\n",count,savingAccount.getAccountNumber(),
                     savingAccount.getBalance(), savingAccount.getOwner().getUsername());
             count++;
+        }
+    }
+
+    public static boolean performTransfer(SavingAccount origin, SavingAccount target, float amount){
+        if(origin.checkFundsTransfer(amount)){
+            origin.withdrawBalance(amount);
+            target.addMoney(amount);
+            return true;
+        }
+        return false;
+    }
+
+    public static void performTransferView(Bank bank) {
+        int indexO, indexT;
+        float amount;
+        boolean isTransferred = false;
+        System.out.println("Please choice the origin Account");
+        printArrayAccounts(bank.getAccounts());
+        System.out.println("Enter the index of the origin account");
+        indexO = getInteger();
+        System.out.println("Enter the amount to transfer");
+        amount = getFloat();
+        System.out.println("Please choice the target Account");
+        printArrayAccounts(bank.getAccounts());
+        System.out.println("Enter the index of the target account");
+        indexT = getInteger();
+        isTransferred = performTransfer(bank.getAccounts().get(indexO), bank.getAccounts().get(indexT), amount);
+        if(isTransferred){
+            System.out.println("The transfer has been performed successfully");
+        }else{
+            System.out.println("The transfer has not been performed successfully, the origin account doesn't has sufficient funds.");
         }
     }
 }
