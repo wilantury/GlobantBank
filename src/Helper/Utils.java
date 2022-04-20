@@ -67,7 +67,9 @@ public class Utils {
         System.out.println("[3] List Users");
         System.out.println("[4] List bank accounts");
         System.out.println("[5] Transfer");
-        System.out.println("[6] Exit");
+        System.out.println("[6] Add money");
+        System.out.println("[7] Get money");
+        System.out.println("[e] Exit");
         System.out.print("Please type an option: ");
         return getString();
     }
@@ -132,7 +134,7 @@ public class Utils {
 
     public static boolean performTransfer(SavingAccount origin, SavingAccount target, float amount){
         if(origin.checkFundsTransfer(amount)){
-            origin.withdrawBalance(amount);
+            origin.withdrawBalanceTransfer(amount);
             target.addMoney(amount);
             return true;
         }
@@ -157,7 +159,43 @@ public class Utils {
         if(isTransferred){
             System.out.println("The transfer has been performed successfully");
         }else{
-            System.out.println("The transfer has not been performed successfully, the origin account doesn't has sufficient funds.");
+            System.out.println("The transfer has not been performed successfully, the origin account doesn't have enough funds.");
+        }
+    }
+
+    public static void performAddMoney(Bank bank) {
+        int index;
+        float amount;
+        try{
+            System.out.println("Please choice an Account");
+            printArrayAccounts(bank.getAccounts());
+            System.out.println("Enter the index of the account");
+            index = getInteger();
+            System.out.println("Enter the amount to add");
+            amount = getFloat();
+            bank.getAccounts().get(index).addMoney(amount);
+        }catch (Exception e){
+            System.out.println("There was an error trying to add money - msn: " + e);
+        }
+    }
+
+    public static void performGetMoney(Bank bank) {
+        int index;
+        float amount;
+        try{
+            System.out.println("Please choice an Account");
+            printArrayAccounts(bank.getAccounts());
+            System.out.println("Enter the index of the account");
+            index = getInteger();
+            System.out.println("Enter the amount to retrieve");
+            amount = getFloat();
+            if(bank.getAccounts().get(index).checkFundsWithdraw(amount)){
+                bank.getAccounts().get(index).withdrawBalance(amount);
+            }else {
+                System.out.println("The bank account doesn't have enough funds to perform this operation.");
+            }
+        }catch (Exception e){
+            System.out.println("There was an error trying to add money - msn: " + e);
         }
     }
 }

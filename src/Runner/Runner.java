@@ -14,9 +14,9 @@ public class Runner {
         User user;
         Bank bank;
         bank = Utils.createBankView();
-        //bank = Utils.createDummyData(bank);
+        bank = Utils.createDummyData(bank);
         System.out.println("Bank name: " + bank.getName());
-        while(!option.equals("6")){
+        while(!option.equals("e")){
             option = Utils.getOptionsAdminMenu(bank.getName());
             switch (option){
                 case "1":
@@ -48,7 +48,21 @@ public class Runner {
                     if(bank.getAccounts().size() > 1){
                         Utils.performTransferView(bank);
                     }else {
-                        System.out.println("There is not enough accounts to perform a transfer");
+                        System.out.println("There isn't enough accounts to perform a transfer");
+                    }
+                    break;
+                case "6":
+                    if(bank.getAccounts().size() > 0){
+                        Utils.performAddMoney(bank);
+                    }else {
+                        System.out.println("There aren't accounts yet");
+                    }
+                    break;
+                case "7":
+                    if(bank.getAccounts().size() > 0){
+                        Utils.performGetMoney(bank);
+                    }else {
+                        System.out.println("There aren't accounts yet");
                     }
                     break;
             }
