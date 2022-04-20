@@ -1,7 +1,6 @@
 package Data;
 
 public class User {
-    private SavingAccount savingAccount;
     private String username;
     private String password;
 
@@ -11,9 +10,6 @@ public class User {
     }
 
     //Getters
-    public SavingAccount getSavingAccount() {
-        return savingAccount;
-    }
 
     public String getUsername() {
         return username;
@@ -23,11 +19,7 @@ public class User {
         return password;
     }
     //Setters
-    public void setSavingAccount(SavingAccount savingAccount) {
-        this.savingAccount = savingAccount;
-    }
-
-    public void setUsername(String username) {
+     public void setUsername(String username) {
         this.username = username;
     }
 
